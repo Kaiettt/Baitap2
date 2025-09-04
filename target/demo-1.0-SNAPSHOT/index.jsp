@@ -1,34 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>Murach's Java Servlets and JSP</title>
-    <link rel="stylesheet" href="styles/main.css" type="text/css" />
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Murach's Java Servlets and JSP</title>
+        <link rel="stylesheet" href="styles/main.css" type="text/css" />
+    </head>
 
-<body>
-    <h2 style="font-size: 24px; color: #333;">Nguyen Anh Kiet - 23110246</h2>
-    <h1>Join our email list</h1>
-    <p>To join our email list, enter your name and email address below.</p>
+    <body>
+        <c:import url="/includes/header.jsp" />
+        <h1>Join our email list</h1>
+        <p>To join our email list, enter your name and email address below.</p>
 
-    <!-- Form submits to the servlet -->
-    <form action="emailList" method="post">
-        <!-- hidden field to indicate the action -->
-        <input type="hidden" name="action" value="add">
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+        <c:if test="${message != null}">
+            <p><i>${message}</i></p>
+        </c:if>
 
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" required><br>
+        <!-- Form submits to the servlet -->
+        <form action="emailList" method="post">
+            <input type="hidden" name="action" value="add">
+            <label class="pad_top">Email:</label>
+            <input type="email" name="email" value="${user.email}"><br>
+            <label class="pad_top">First Name:</label>
+            <input type="text" name="firstName" value="${user.firstName}"><br>
+            <label class="pad_top">Last Name:</label>
+            <input type="text" name="lastName" value="${user.lastName}"><br>
+            <label>&nbsp;</label>
+            <input type="submit" value="Join Now" class="margin_left">
+        </form>
+        <c:import url="/includes/footer.jsp" />
+    </body>
 
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required><br>
-
-        <label>&nbsp;</label>
-        <input type="submit" value="Join Now" id="submit">
-    </form>
-</body>
-
-</html>
+    </html>
